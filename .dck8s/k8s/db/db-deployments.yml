@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordsmith-db-deploy
+  labels:
+    app: wordsmith-db-deploy
+spec:
+  selector:
+    matchLabels:
+      app: wordsmith-db-label
+  template:
+    metadata:
+      labels:
+        app: wordsmith-db-label
+    spec:
+      containers:
+        - name: wordsmith-db-container
+          image: elyhamza/wordsmith-db
+          envFrom:
+          - secretRef:
+              name: wordsmith-secrets
+          ports:
+            - containerPort: 5432
+              name: wordsmithdbport

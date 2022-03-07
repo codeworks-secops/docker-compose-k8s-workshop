@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordsmith-api-deploy
+  labels:
+    app: wordsmith-api-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: wordsmith-api-label
+  template:
+    metadata:
+      labels:
+        app: wordsmith-api-label
+    spec:
+      containers:
+        - name: wordsmith-api-container
+          image: elyhamza/wordsmith-api
+          env:
+            - name: POSTGRES_HOST_SERVICE
+              value: wordsmith-db-svc
+          ports:
+            - containerPort: 8080
+              name: wsapiport

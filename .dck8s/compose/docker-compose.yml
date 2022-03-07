@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  db:
+    build: ../../db
+    image: elyhamza/wordsmith-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  api:
+    build: ../../api
+    image: elyhamza/wordsmith-api
+    environment:
+      - POSTGRES_HOST_SERVICE=db
+    ports:
+      - "8080:8080"
+  web:
+    build: ../../web
+    image: elyhamza/wordsmith-web
+    environment:
+      - WORDSMITH_API_SERVICE=api
+    ports:
+      - "9090:80"
+volumes: 
+  pgdata:
