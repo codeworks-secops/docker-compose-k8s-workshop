@@ -1,10 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: wordsmith-db-deploy
-  labels:
-    app: wordsmith-db-deploy
+  name: wordsmith-db-statefullset
 spec:
+  serviceName: wordsmith-db-statefullset
   selector:
     matchLabels:
       app: wordsmith-db-label
@@ -16,9 +15,20 @@ spec:
       containers:
         - name: wordsmith-db-container
           image: elyhamza/wordsmith-db
+          volumeMounts:
+            - name: wordsmith-db-disk
+              mountPath: /var/lib/postgresql/data
           envFrom:
           - secretRef:
               name: wordsmith-secrets
           ports:
             - containerPort: 5432
               name: wordsmithdbport
+  volumeClaimTemplates:
+    - metadata:
+        name: wordsmith-db-disk
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 25Gi
