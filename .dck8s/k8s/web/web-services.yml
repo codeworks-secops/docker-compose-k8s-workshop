@@ -4,6 +4,7 @@ metadata:
   name: wordsmith-web-svc
   labels:
     app: wordsmith-web-svc
+    environment: wordsmith-test-env
 spec:
   ports:
     - port: 9191
