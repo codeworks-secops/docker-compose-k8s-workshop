@@ -1,8 +1,16 @@
-# Docker Compose & Kubernetes Wordsmith Demo
+# Docker Compose & Kubernetes Workshop
 
-Wordsmith is the demo project shown at DockerCon EU 2017 and 2018.
+In this workshop, we will work with the Wordsmith application which is the demo project shown at DockerCon EU 2017 and 2018.
 
-The demo app runs across three containers:
+NB: Please try to find your own solutions before getting response from the repository.
+
+## Architecture Schema
+
+PNG
+
+## Preamble
+
+The demo app runs across three containers :
 
 - [db](db/Dockerfile) - a Postgres database which stores words
 
@@ -50,7 +58,7 @@ kubectl apply --recursive -f ./
 ```
 Now browse to [http://localhost:9090](http://localhost:9090) and you will see the same site.
 
-Docker Desktop includes Kuernetes and the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) command line,
+Docker Desktop includes Kubernetes and the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) command line,
 so you can work directly with the Kube cluster.
 Check the services are up, and you should see output like this:
 
