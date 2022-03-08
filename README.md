@@ -1,8 +1,16 @@
-# Docker Compose & Kubernetes Wordsmith Demo
+# Docker Compose & Kubernetes Workshop
 
-Wordsmith is the demo project shown at DockerCon EU 2017 and 2018.
+In this workshop, we will work with the Wordsmith application which is the demo project shown at DockerCon EU 2017 and 2018.
 
-The demo app runs across three containers:
+NB: Please try to find your own solutions before getting response from the repository.
+
+## Architecture Schema
+
+PNG
+
+## Preamble
+
+The demo app runs across three containers :
 
 - [db](db/Dockerfile) - a Postgres database which stores words
 
@@ -30,49 +38,44 @@ docker compose up --build
 
 > Or you can pull pre-built images from Docker Hub using `docker compose pull`.
 
-## Deploy Using a Kubernetes Manifest
+Check that all 3 containers are running :
 
-You can deploy the same app to Kubernetes using the [Kubernetes manifest](.dck8s/k8s).
-That describes the same application in terms of Kubernetes deployments, services and pod specifications.
-
-Apply the manifest using `kubectl`:
-
-Be sure that you are in the right folder [Kubernetes manifest](.dck8s/k8s) : 
-
-```shell
-cd .dck8s/k8s
+```
+$ docker-compose ls
+NAME                STATUS
+compose             running(3)
 ```
 
-And then, execute the following command :
-
-```shell
-kubectl apply --recursive -f ./
-```
-Now browse to [http://localhost:9090](http://localhost:9090) and you will see the same site.
-
-Docker Desktop includes Kuernetes and the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) command line,
-so you can work directly with the Kube cluster.
 Check the services are up, and you should see output like this:
 
 ```
-$ kubectl get services -l environment=wordsmith-test-env
-NAME                TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-wordsmith-api-svc   ClusterIP      None            <none>        8080/TCP         6m59s
-wordsmith-db-svc    ClusterIP      None            <none>        5432/TCP         6m59s
-wordsmith-web-svc   LoadBalancer   10.99.166.159   localhost     9191:30149/TCP   6m59s
+$ docker-compose ps
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+compose-api-1       "java -Xmx8m -Xms8m …"   api                 running             0.0.0.0:8080->8080/tcp
+compose-db-1        "docker-entrypoint.s…"   db                  running             0.0.0.0:5432->5432/tcp
+compose-web-1       "/dispatcher"            web                 running             0.0.0.0:9090->80/tcp
 ```
 
-Check the pods are running, and you should see one pod each for the database and web components,
-and five pods for the words API - which is specified as the replica count in the manifest file:
+Tear down all services by executing this command : 
+
+```shell
+docker-compose down
+```
+
+You should see output like this : 
 
 ```
-$ kubectl get pods -l environment=wordsmith-test-env
-NAME                                    READY   STATUS    RESTARTS   AGE
-wordsmith-api-deploy-6b89d48b7-k469f    1/1     Running   0          14s
-wordsmith-api-deploy-6b89d48b7-kmv7p    1/1     Running   0          14s
-wordsmith-api-deploy-6b89d48b7-l7pq7    1/1     Running   0          14s
-wordsmith-api-deploy-6b89d48b7-s7pgx    1/1     Running   0          14s
-wordsmith-api-deploy-6b89d48b7-tsxzl    1/1     Running   0          14s
-wordsmith-db-deploy-788b896dcc-tkf65    1/1     Running   0          14s
-wordsmith-web-deploy-697c5d565c-m28tf   1/1     Running   0          13s
+$ docker-compose down
+[+] Running 4/4
+ ⠿ Container compose-api-1  Removed                                                                                                                                                              0.6s
+ ⠿ Container compose-web-1  Removed                                                                                                                                                              0.3s
+ ⠿ Container compose-db-1   Removed                                                                                                                                                              0.3s
+ ⠿ Network compose_default  Removed  
+```
+
+Check again if there are services up : 
+
+```
+$ docker-compose ps
+NAME                COMMAND                  SERVICE             STATUS              PORTS
 ```

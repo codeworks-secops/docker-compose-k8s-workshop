@@ -2,7 +2,7 @@ version: "3.9"
 services:
   db:
     build: ../../db
-    image: elyhamza/wordsmith-db
+    image: dck8s/wordsmith-db
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=pass
@@ -13,14 +13,14 @@ services:
       - pgdata:/var/lib/postgresql/data
   api:
     build: ../../api
-    image: elyhamza/wordsmith-api
+    image: dck8s/wordsmith-api
     environment:
       - POSTGRES_HOST_SERVICE=db
     ports:
       - "8080:8080"
   web:
     build: ../../web
-    image: elyhamza/wordsmith-web
+    image: dck8s/wordsmith-web
     environment:
       - WORDSMITH_API_SERVICE=api
     ports:
