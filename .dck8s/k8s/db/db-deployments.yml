@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: wordsmith-db-label
+        environment: wordsmith-test-env
     spec:
       containers:
         - name: wordsmith-db-container

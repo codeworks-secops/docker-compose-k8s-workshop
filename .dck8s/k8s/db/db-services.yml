@@ -4,6 +4,7 @@ metadata:
   name: wordsmith-db-svc
   labels:
     app: wordsmith-db-svc
+    environment: wordsmith-test-env
 spec:
   ports:
     - port: 5432

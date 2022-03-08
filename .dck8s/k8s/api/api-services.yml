@@ -4,6 +4,7 @@ metadata:
   name: wordsmith-api-svc
   labels:
     app: wordsmith-api-svc
+    environment: wordsmith-test-env
 spec:
   ports:
     - port: 8080

@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: wordsmith-api-label
+        environment: wordsmith-test-env
     spec:
       containers:
         - name: wordsmith-api-container
