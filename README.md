@@ -6,7 +6,7 @@ NB: Please try to find your own solutions before getting response from the repos
 
 ## Architecture Schema
 
-PNG
+![wordsmith-architcture](wordsmith-architecture.png   )
 
 ## Preamble
 
