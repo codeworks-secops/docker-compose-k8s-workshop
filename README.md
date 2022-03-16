@@ -20,28 +20,50 @@ The demo app runs across three containers :
 
 ## Build and Run in Docker Compose
 
-- The only requirement to build and run the app from source is Docker.
+Before doing any action, be sure that your local volumes is ok. 
 
-- Clone this repo and use Docker Compose to build all the images.
+If you want, you can remove all of unused volumes by executing the following command : 
 
-- Go to the **[.dck8s/compose](.dck8s/compose)** folder.
+```shell
+docker volume prune
+```
+
+The only requirement to build and run the app from source is Docker.
+
+
+Clone this repo and use Docker Compose to build all the images.
+
+
+Go to the **[.dck8s/compose](.dck8s/compose)** folder.
+
 
 ```shell
 cd .dck8s/compose
 ```
 
-- You can use the new V2 Compose with `docker compose` or the classic `docker-compose` CLI:
+You can use the new version of Compose with `docker compose` like : 
 
 ```shell
-docker compose up --build
+docker compose --env-file .env.dev up --build -
 ```
 
-> Or you can pull pre-built images from Docker Hub using `docker compose pull`.
+Or the classic `docker-compose` CLI :
+
+```shell
+docker-compose build
+```
+
+And : 
+
+```shell
+docker-compose --env-file .env.dev up -d 
+```
 
 Check that all 3 containers are running :
 
 ```
-$ docker-compose ls
+$ docker compose ls
+
 NAME                STATUS
 compose             running(3)
 ```
@@ -50,6 +72,7 @@ Check the services are up, and you should see output like this:
 
 ```
 $ docker-compose ps
+
 NAME                COMMAND                  SERVICE             STATUS              PORTS
 compose-api-1       "java -Xmx8m -Xms8m …"   api                 running             0.0.0.0:8080->8080/tcp
 compose-db-1        "docker-entrypoint.s…"   db                  running             0.0.0.0:5432->5432/tcp
@@ -66,6 +89,7 @@ You should see output like this :
 
 ```
 $ docker-compose down
+
 [+] Running 4/4
  ⠿ Container compose-api-1  Removed                                                                                                                                                              0.6s
  ⠿ Container compose-web-1  Removed                                                                                                                                                              0.3s
@@ -77,5 +101,6 @@ Check again if there are services up :
 
 ```
 $ docker-compose ps
+
 NAME                COMMAND                  SERVICE             STATUS              PORTS
 ```

@@ -26,7 +26,7 @@ public class Main {
 
     private static String randomWord(String table) {
         final String jdbcUrl = "jdbc:postgresql://" + System.getenv("POSTGRES_HOST_SERVICE") + ":5432/postgres";
-        try (Connection connection = DriverManager.getConnection(jdbcUrl, "postgres", "pass")) {
+        try (Connection connection = DriverManager.getConnection(jdbcUrl, "postgres", "azerty")) {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet set = statement.executeQuery("SELECT word FROM " + table + " ORDER BY random() LIMIT 1")) {
                     while (set.next()) {
