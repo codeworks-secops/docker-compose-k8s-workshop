@@ -3,6 +3,7 @@ services:
   db:
     build: ../../db
     image: dck8s/wordsmith-db
+    restart: always
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
