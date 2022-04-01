@@ -58,7 +58,7 @@ git checkout code-base
    - web : service to manage WEB docker resources
 
 
-5. Play with all commands offered by Docker Compose, like :
+5. Play with all commands offered by Docker Compose, like : build, images, ls, up, down, start, stop, logs,...
 
 
 6. Test your Docker Compose manifest file.
