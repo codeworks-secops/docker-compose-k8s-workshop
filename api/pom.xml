@@ -76,7 +76,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>dependency</classpathPrefix>
-                            <mainClass>Main</mainClass>
+                            <mainClass>wordsmith.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

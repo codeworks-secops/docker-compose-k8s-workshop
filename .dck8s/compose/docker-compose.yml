@@ -15,11 +15,15 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - wordsmith_net
   adminer:
     image: adminer
     restart: always
     ports:
       - "8001:8080"
+    networks:
+      - wordsmith_net
   api:
     build: ../../api
     image: dck8s/wordsmith-api
@@ -30,6 +34,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - wordsmith_net
   web:
     build: ../../web
     image: dck8s/wordsmith-web
@@ -37,5 +43,9 @@ services:
       - WORDSMITH_API_SERVICE=api
     ports:
       - "9090:80"
+    networks:
+      - wordsmith_net
 volumes: 
   pgdata:
+networks:
+  wordsmith_net:

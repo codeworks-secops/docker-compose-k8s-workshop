@@ -1,3 +1,5 @@
+package wordsmith;
+
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
