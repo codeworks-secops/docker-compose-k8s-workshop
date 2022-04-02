@@ -42,7 +42,7 @@ git checkout code-base
 
 ***
 
-### Case 1 : Use Docker Compose to containerise Wordsmith App
+### Step 1 : Use Docker Compose to containerise Wordsmith App
 
 1. Create a new directory named `.dck8s` in the root of your local project
 
@@ -59,7 +59,10 @@ git checkout code-base
    - api : service to manage API docker resources
    - web : service to manage WEB docker resources
 
+**NB:** you must use your Dockerfile manifests to build your services (think build context)
+
 5. Play with all commands offered by Docker Compose, like : build, images, ls, up, down, start, stop, logs,...
+
 
 6. Test your Docker Compose manifest file.
 
@@ -71,7 +74,7 @@ git checkout code-base
 
 ***
 
-### Case 2 : Use Kubernetes Manifest Deployment Yml (Part 1)
+### Step 2 : Use Kubernetes Manifest Deployment Yml (Part 1)
     
 1. Create a new directory named `k8s` inside `.dck8S` directory.
 
@@ -102,7 +105,7 @@ git checkout code-base
 
 ***
 
-### Case 3 : Use Kubernetes Manifest StatefulSet Yml (Part 2)
+### Step 3 : Use Kubernetes Manifest StatefulSet Yml (Part 2)
 
 Change deployment manifest to statefulSet for db project to have persistence status for your Postgres database
 
