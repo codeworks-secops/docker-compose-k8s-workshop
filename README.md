@@ -38,6 +38,8 @@ git clone git@github.com:codeworks-secops/docker-compose-k8s-workshop.git
 git checkout code-base
 ```
 
+3. Dockerize the api and db modules
+
 ***
 
 ### Case 1 : Use Docker Compose to containerise Wordsmith App
