@@ -79,6 +79,31 @@ compose-db-1        "docker-entrypoint.s…"   db                  running      
 compose-web-1       "/dispatcher"            web                 running             0.0.0.0:9090->80/tcp
 ```
 
+Get a container IP Address : 
+
+```shell
+docker inspect --format '{{ .NetworkSettings.Networks.compose_wordsmith_net.IPAddress  }}' <CONTAINER_NAME>
+```
+
+If you want to scale a specific service like api : 
+
+```shell
+docker-compose --env-file .env.dev up -d --scale api=3
+```
+
+A quick check again : 
+
+```
+$ docker-compose ps
+
+compose-adminer-1   "entrypoint.sh docke…"   adminer             running             0.0.0.0:8001->8080/tcp
+compose-api-1       "java -Xmx8m -Xms8m …"   api                 running             0.0.0.0:8082->8080/tcp
+compose-api-2       "java -Xmx8m -Xms8m …"   api                 running             0.0.0.0:8081->8080/tcp
+compose-api-3       "java -Xmx8m -Xms8m …"   api                 running             0.0.0.0:8083->8080/tcp
+compose-db-1        "docker-entrypoint.s…"   db                  running (healthy)   0.0.0.0:5432->5432/tcp
+compose-web-1       "/dispatcher"            web                 running             0.0.0.0:9090->80/tcp
+```
+
 Tear down all services by executing this command : 
 
 ```shell
